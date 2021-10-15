@@ -43,7 +43,7 @@
      service:
        name: nginx
        state: restarted
-- hosts: haproxy
+- hosts: HAproxy
   gather_facts: yes
   become: yes
   tasks:
@@ -53,7 +53,7 @@
    - name: Installation of HAproxy
      become: yes
      apt:
-      name: haproxy
+      name: HAproxy
       state: present
    - name: Update configuraton file of HAproxy
      template:
@@ -61,5 +61,5 @@
       dest: /etc/haproxy/haproxy.cfg
    - name: HAProxy reinitiation
      service:
-       name: haproxy
+       name: HAproxy
        state: restarted
