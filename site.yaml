@@ -7,7 +7,7 @@
      apt:
       update_cache: yes
       cache_valid_time: 3600
-   - name: Knowing whether nginx has been installed
+   - name: Checking whether nginx has been installed
      become: yes
      apt:
       name: nginx
@@ -47,15 +47,15 @@
   gather_facts: yes
   become: yes
   tasks:
-   - name: Haproxy upadating cahe
+   - name: HAproxy updating cache
      apt:
       update_cache: yes
-   - name: Installation of haproxy
+   - name: Installation of HAproxy
      become: yes
      apt:
       name: haproxy
       state: present
-   - name: Update configuraton file of haproxy
+   - name: Update configuraton file of HAproxy
      template:
       src: haproxy.cfg.j2
       dest: /etc/haproxy/haproxy.cfg
