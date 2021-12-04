@@ -2,12 +2,17 @@
 
 The goal of this assignment is to implement a simple web service.
 
-Three nginx servers A, B, C with three different addresses are deployed.
+Three nginx servers A, B, C are running on three different platforms, and all three have different addresses.
 
-A Bastion is used as an entry point to the network for secure access for configuration and administration using SSH. 
+A Bastion is used as an entry point to the network of the three servers, it is basically a jump host to the the network. 
 
-A server HAproxy is used to load balance between these three servers. So anyone can connect to the website through this server. 
+The communication to the servers through the Bastion is secured using SSH. 
+
+The Bastion is used for secure access to the network for configuration and administration.
+
+A server HAproxy is used to load balance between the three servers. The HAproxy is the entry point for a user to the website. 
 
 PHP script is deployed on Nginx webservers and HAproxy using Ansible.
 
 This project need to have a SSH config that can be used by Ansible.
+
