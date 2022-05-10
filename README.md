@@ -1,6 +1,8 @@
 # automation-with-ansible
 
-The goal of this assignment is to implement a simple web service.
+The goal of this assignment is to implement a simple app in python-flask and put it behind HAproxy - which will work as a load balancer. 
+
+The basic service is a simple (flask) app, that only answers requests, by replying with the time and hostname of the host that replied. The service is found in the following git repository: https://github.com/patrikarlos/NSO_A2 (Links to an external site.). Use the 'application2.py' for this assignment. 
 
 Three nginx servers A, B, C are running on three different platforms, and all three have different addresses.
 
