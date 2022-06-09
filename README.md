@@ -53,7 +53,13 @@ Task-| --> Enable httpd                  --> Module -->}      } Playbook
      | --> Enable http port on firewall  --> Module -->|      }
 
 
+# References - 
+1. Notes and material provided by Complete DevOps Ansible Automation Training course by Imran Afzal on Udemy. ( https://www.udemy.com/share/106iDy3@Wnf7pv-V0J6Q5RjdnO_a6ue0di-S0DQpkbrq0OfaBMJ63Ji8vSbB-yqMGSTB8G_-/ )
+2. Google search for keywords that were not understood such as Git, yaml, ansible etc.
 
+
+
+# Appendix
 Assignment - 2 workshop notes -
 
 1. Setting up the environment - servers, SSH
@@ -156,13 +162,13 @@ site.yaml -> the playbook itself
 
 README -> an explanation - this file
 
-# listen 80 default_server;
-# listen [::] :80 default_server; - Any kind of address for IPv6 - [::]
+- listen 80 default_server;
+- listen [::] :80 default_server; - Any kind of address for IPv6 - [::]
 
-# root /var/www/html;
-# index index.php index.html indenx.niginx-debian.html
+- root /var/www/html;
+- index index.php index.html indenx.niginx-debian.html
 
-Python -django
+Python - django
 
 The packages nginx, php have to be installed on the servers A, B, and C.
 
@@ -191,21 +197,18 @@ e.g.
        name: httpd
        state: started
        
-# Running ansible without a playbook ( command )
-# ansible 
+ Running ansible without a playbook ( command )
+-> ansible 
 
-# Running ansible with a playbook (command )
-# ansible-playbook
+Running ansible with a playbook (command )
+-> ansible-playbook
 
-## Load Balancing: HAProxy
+# Load Balancing: HAProxy
 
 -> frontend: listens for connections
 -> backend: forwards requests
 -> stats: monitoring load balancer and other two nodes
 
 
-References - 
-1. Notes and material provided by Complete DevOps Ansible Automation Training course by Imran Afzal on Udemy. ( https://www.udemy.com/share/106iDy3@Wnf7pv-V0J6Q5RjdnO_a6ue0di-S0DQpkbrq0OfaBMJ63Ji8vSbB-yqMGSTB8G_-/ )
-2. Google search for keywords that were not understood such as Git, yaml, ansible etc.
 
                 
