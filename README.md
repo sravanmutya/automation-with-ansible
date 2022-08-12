@@ -1,7 +1,5 @@
 # automation-with-ansible
 
-I have been unsuccessful in solving this assignment, hence it is an attempt at the submission. It involves the statement of the problem from canvas and the background research I had done as comments here in the readme. 
-
 
 
 The statement of the problem -
