@@ -34,16 +34,13 @@ defaults
 	errorfile 503 /etc/haproxy/errors/503.http
 	errorfile 504 /etc/haproxy/errors/504.http
 
-frontend open_connections
-{% for devhaproxy in groups['haproxy'] %}
-    bind {{ hostvars[devhaproxy]['ansible_default_ipv4']['address'] }}:80 
-{% endfor %}
-    mode http
-    default_backend backend_server
+frontend web
+    bind *:80
+    default_backend web_servers
 
-backend backend_server
-    mode http
+backend web_servers
+	mode http
     balance roundrobin
-{% for servers in groups['webservers'] %}
-    server {{ hostvars[servers]['inventory_hostname'] }} {{ hostvars[servers]['ansible_default_ipv4']['address'] }}:80 check 
+{% for server in groups['webservers'] %}
+    server  {{ server }} {{ hostvars[server]['ansible_default_ipv4']['address'] }}:80 check
 {% endfor %}
