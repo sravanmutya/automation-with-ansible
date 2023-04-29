@@ -1,0 +1,27 @@
+Host Bastion
+     HostName 103.57.74.220
+     User ubuntu
+     IdentityFile ~/.ssh/id_rsa
+
+Host devA
+	Hostname 10.0.1.25
+	User ubuntu
+        IdentityFile ~/.ssh/id_rsa
+        ProxyCommand ssh -W %h:%p Bastion
+
+Host devB
+        Hostname 10.0.1.17
+        User ubuntu
+        IdentityFile ~/.ssh/id_rsa
+        ProxyCommand ssh -W %h:%p Bastion
+
+Host devC
+        Hostname 10.0.1.13
+        User ubuntu
+        IdentityFile ~/.ssh/id_rsa
+        ProxyCommand ssh -W %h:%p Bastion
+
+Host HAproxy
+     HostName 188.212.109.239
+     User ubuntu
+     IdentityFile ~/.ssh/id_rsa
