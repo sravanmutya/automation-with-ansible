@@ -3,52 +3,52 @@
   gather_facts: yes
   become: yes
   tasks:
-     - name: Update repositories cache
-       apt:
-         update_cache: yes
-         cache_valid_time: 3600
-         
-     - name: Installing Python3-pip
-       apt:
-          name: python3-pip
-          state: present
+    - name: Update repositories cache
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600
       
-     - name: Install flask for Python3 using the 'pip3' executable
-       ansible.builtin.pip:
-         name: flask
-         executable: pip3
-         state: latest
+    - name: Installing Python3-pip 
+      apt:
+         name: python3-pip
+         state: present
          
-     - name: uploading the app.py application
-       copy:
-         src: ./app.py
-         dest: /home/ubuntu
-         owner: ubuntu
-         group: ubuntu
-         mode: 0644
-         
-      - name: Running the application
-        shell: python3 /home/ubuntu/app.py
-        async: 3600
-        poll: 0
-        
-  - hosts: haproxy
+    - name: Install flask for Python3 using the 'pip3' executable
+      ansible.builtin.pip:
+        name: flask
+        executable: pip3
+        state: latest
+
+    - name: uploading the app.py application
+      copy:
+        src: ./app.py
+        dest: /home/ubuntu
+        owner: ubuntu
+        group: ubuntu
+        mode: 0644
+
+    - name: Running the application
+      shell: python3 /home/ubuntu/app.py
+      async: 3600
+      poll: 0
+
+- hosts: haproxy
   gather_facts: yes
   become: yes
   tasks:
-   - name: Updating repositories cache
-     apt:
-      update_cache: yes
-      cache_valid_time: 3600
-   - name: Installation of haproxy
-     become: yes
-     apt:
-      name: haproxy
-      state: present
-   - name: Update configuraton file of haproxy
-     template:
-      src: ./haproxy.cfg.j2
-      dest: /etc/haproxy/haproxy.cfg
-   - name: HAProxy reinitialization
-     service:
-       name: haproxy
+    - name: Upadating repositories cache
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600
+    - name: Installing HAproxy
+      apt:
+        name: haproxy
+        state: present
+    - name: uploading haproxy configuration file
+      template:
+        src: ./haproxy.cfg.j2
+        dest: /etc/haproxy/haproxy.cfg
+    - name: Reinitializing HAProxy
+      service:
+        name: haproxy
+        state: restarted
