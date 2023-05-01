@@ -19,7 +19,7 @@
         executable: pip3
         state: latest
 
-    - name: uploading the app.py application
+    - name: Uploading the app.py application
       copy:
         src: ./app.py
         dest: /home/ubuntu
