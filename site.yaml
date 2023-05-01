@@ -13,7 +13,7 @@
          name: python3-pip
          state: present
          
-    - name: Install flask for Python3 using the 'pip3' executable
+    - name: Installation flask for Python3 using the 'pip3' executable
       ansible.builtin.pip:
         name: flask
         executable: pip3
