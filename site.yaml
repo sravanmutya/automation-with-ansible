@@ -36,7 +36,7 @@
   gather_facts: yes
   become: yes
   tasks:
-    - name: Upadating repositories cache
+    - name: Updating repositories cache
       apt:
         update_cache: yes
         cache_valid_time: 3600
