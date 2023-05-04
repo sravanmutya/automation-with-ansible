@@ -3,17 +3,17 @@
   gather_facts: yes
   become: yes
   tasks:
-    - name: Updating the repositories cache
+    - name: Update the repositories cache
       apt:
         update_cache: yes
         cache_valid_time: 3600
       
-    - name: Installation of Python3-pip
+    - name: Install Python3-pip
       apt:
          name: python3-pip
          state: present
          
-    - name: Installation of flask for Python3 through the 'pip3' executable
+    - name: Install flask using 'pip3' executable
       ansible.builtin.pip:
         name: flask
         executable: pip3
