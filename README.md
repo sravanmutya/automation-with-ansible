@@ -8,18 +8,12 @@ The goal of this assignment is to implement a simple app in python-flask and put
 
 The basic service is a simple (flask) app, that only answers requests, by replying with the time and hostname of the host that replied. The service is found in the following git repository: https://github.com/patrikarlos/NSO_A2  The 'application2.py' is used for this assignment. 
 
-Three servers A, B, C are running on three different platforms, in a private network, in which all three have different IP addresses in the range, 10.0.1.0/27. Specifically, for this assignment, the IP addresses of the servers are as follows -
+Three servers A, B, C are running on three different platforms, in a private network, in which all three have different IP addresses in the range, 10.0.1.0/27.
 
+A Bastion is used as an entry point to the network of the three servers, it is basically a jump host to the network of the three servers. 
+The Bastion is used for the purpose of secure access to the network for configuration and administration. Therefore, it is the entry point for the network administrator, etc. to the network. Hence, the communication to the servers through the Bastion is secured using SSH.
 
-A Bastion is used as an entry point to the network of the three servers, it is basically a jump host to the the network. 
-
-The communication to the servers through the Bastion is secured using SSH. 
-
-The Bastion is used for secure access to the network for configuration and administration.
-
-A server HAproxy is used to load balance between the three servers. The HAproxy is the entry point for a user to the website. 
-
-This project need to have a SSH config that can be used by Ansible.
+Then, it is assumed that the service is a big hit, therefore, a loadbalancer, HAproxy, is deployed to balance the load between the three servers. Therefore, HAproxy is the entry point for a user to the website. 
 
 
 
@@ -46,15 +40,16 @@ Working format of ansible -
 5. Playbook is written as a file format called YAML.
 
 Understanding of the format -
-     | --> Install httpd                 --> Module -->} Play }
-Task-| --> Enable httpd                  --> Module -->}      } Playbook
-     | --> Start httpd                   --> Module -->| Play }
-     | --> Enable http port on firewall  --> Module -->|      }
+     | --> Install python3-pip                        --> Module -->] Play }
+Task-| --> Install flask                              --> Module -->]      } Playbook
+     | --> Update repositories cache                  --> Module -->| Play }
+     | --> Run the application                        --> Module -->|      }
 
 
 # References - 
 1. Notes and material provided by Complete DevOps Ansible Automation Training course by Imran Afzal on Udemy. ( https://www.udemy.com/share/106iDy3@Wnf7pv-V0J6Q5RjdnO_a6ue0di-S0DQpkbrq0OfaBMJ63Ji8vSbB-yqMGSTB8G_-/ )
-2. Google search for keywords that were not understood such as Git, yaml, ansible etc.
+2. Network Security Essentials - Stallings
+3. Google search for keywords that were not understood such as Git, yaml, ansible etc.
 
 
 
@@ -65,18 +60,9 @@ Assignment - 2 workshop notes -
 2. Programming
 
 -> Set up Ubuntu server
--> Install nginx, php, php-fpm packages.
+-> Install the required package python3-pip
 
 Ubuntu 20.04 LTS - use CityNetwork/Cleura VMs (or) use other VMs from Azure, AWS, etc.
-
-                |   PHP  |
-                     |
-                     |
-                |  Nginx |
-                     |
-                     |
-                | Ubuntu |
-                 
                  
 From the local machine SSH to Bastion host.
 
@@ -86,11 +72,11 @@ The Bastion is used as an entry point to the cloud network, it is not possible t
 
 The local machine is outside the internal network, i.e., you connect through the Bastion host for security purposes.
 
-Three nginx servers running on three different platforms.
+Three application servers running on three different platforms.
 
 Servers A, B, C --> serve the same purpose.
 
-Three different servers with three different addresses.
+Three different servers with three different private addresses.
 
 Better to make the three on the same network, i.e. -
 -> The underlying network
@@ -141,12 +127,9 @@ SSH -> symmetrical encryption, that means,
 Through HAProxy anyone can connect to the website.
 Through Bastion - secure access for configuration and administration.
 
-There also needs to be a configuratio file for HAProxy for load balancing.
+There also needs to be a configuration file for HAProxy for load balancing.
 
 Ansible can be used to configure A, B, C, and HAproxy.
-
-Testing the entire thing -
--> Query the PHP from the webserver.
 
 Testing the loadbalancing -
 -> You have to get the same number of replies from all the three servers A, B, and C.
