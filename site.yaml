@@ -19,7 +19,7 @@
         executable: pip3
         state: latest
 
-    - name: Uploading the app.py application
+    - name: Upload the application to the servers
       copy:
         src: ./app.py
         dest: /home/ubuntu
@@ -27,7 +27,7 @@
         group: ubuntu
         mode: 0644
 
-    - name: Running the application
+    - name: Run the application
       shell: python3 /home/ubuntu/app.py
       async: 3600
       poll: 0
@@ -36,19 +36,19 @@
   gather_facts: yes
   become: yes
   tasks:
-    - name: Updating repositories cache
+    - name: Update repositories cache
       apt:
         update_cache: yes
         cache_valid_time: 3600
-    - name: Installing HAproxy
+    - name: Install HAproxy
       apt:
         name: haproxy
         state: present
-    - name: uploading haproxy configuration file
+    - name: Upload haproxy config file
       template:
         src: ./haproxy.cfg.j2
         dest: /etc/haproxy/haproxy.cfg
-    - name: Restarting HAProxy
+    - name: Restart HAProxy
       service:
         name: haproxy
         state: restarted
