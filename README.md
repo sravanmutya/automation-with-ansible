@@ -8,7 +8,8 @@ The goal of this assignment is to implement a simple app in python-flask and put
 
 The basic service is a simple (flask) app, that only answers requests, by replying with the time and hostname of the host that replied. The service is found in the following git repository: https://github.com/patrikarlos/NSO_A2  The 'application2.py' is used for this assignment. 
 
-Three servers A, B, C are running on three different platforms, and all three have different addresses.
+Three servers A, B, C are running on three different platforms, in a private network, in which all three have different IP addresses in the range, 10.0.1.0/27. Specifically, for this assignment, the IP addresses of the servers are as follows -
+
 
 A Bastion is used as an entry point to the network of the three servers, it is basically a jump host to the the network. 
 
